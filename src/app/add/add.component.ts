@@ -17,7 +17,7 @@ export class AddComponent implements OnInit {
 
   addNew(): void{
     const newTodoItem = new ItemData(4, this.newTodo.nativeElement.value);
-    if(this.newTodo.nativeElement.value === '' ){
+    if ( this.newTodo.nativeElement.value === '' ){
       alert('enter name');
     }else {
       this.itemsServices.addNewItem(newTodoItem);

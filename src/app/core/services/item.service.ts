@@ -9,7 +9,7 @@ import {ItemData} from '../../itemData';
 // this.http.get<Item>('taskItem').subscribe( x => {
 //   console.log(x);
 // });
-
+//const index = this.recipes.findIndex(i => i.id === idItem);
 export class ItemService {
   private taskItem: ItemData[] = [
     new ItemData(1, 'create components'),
@@ -24,5 +24,10 @@ export class ItemService {
     // const newTodoItem = new ItemData(4, 'marina');
     item.id = this.taskItem.length + 1;
     this.taskItem.push(item);
+  }
+
+  editItem(id, val): void{
+    const indexItem = this.taskItem.findIndex(i => i.id === id);
+    this.taskItem[indexItem].name = val;
   }
 }

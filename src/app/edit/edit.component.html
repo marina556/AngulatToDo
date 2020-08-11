@@ -1,1 +1,12 @@
-<p>edit works!</p>
+<h2>Edit ToDo Item</h2>
+<form>
+  <div class="form-group">
+    <label  for="exampleInputEmail1">Name : </label>
+    <input #editTodoName type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Name Here" [value]="thisItem.name">
+  </div>
+
+  <button type="reset" class="btn btn-secondary" >Reset</button>
+  <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
+  <button type="button" class="btn btn-primary" (click)="editItem()">Submit</button>
+</form>
+

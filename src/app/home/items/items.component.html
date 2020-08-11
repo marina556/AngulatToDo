@@ -3,5 +3,5 @@
     <p class="col-4">{{item.id}}</p>
     <p class="col-8">{{item.name}}</p>
   </div>
-  <button class="btn btn-primary col-4" [routerLink]="['/edit']">edit</button>
+  <button class="btn btn-primary col-4" [routerLink]="['/edit',item.id]">edit</button>
 </div>
