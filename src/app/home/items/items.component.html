@@ -1,4 +1,7 @@
-<div class="row p-2 border mt-2">
-  <p class="col-8" >task</p>
-  <button class="btn btn-primary col-3" [routerLink]="['/edit']">edit</button>
+<div class="row p-2 border mt-2" *ngFor="let item of taskItem">
+  <div class="col-sm-8 row">
+    <p class="col-4">{{item.id}}</p>
+    <p class="col-8">{{item.name}}</p>
+  </div>
+  <button class="btn btn-primary col-4" [routerLink]="['/edit']">edit</button>
 </div>
