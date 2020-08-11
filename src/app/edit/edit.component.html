@@ -4,7 +4,12 @@
     <label  for="exampleInputEmail1">Name : </label>
     <input #editTodoName type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Name Here" [value]="thisItem.name">
   </div>
-
+  <div class="form-group form-check">
+<!--    <input type="checkbox" class="form-check-input" id="exampleCheck3" #element  (change)="chaneitem()" >-->
+<!--    <label class="form-check-label" for="exampleCheck3">{{checkval}}</label>-->
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="checkvalue">
+    <label class="form-check-label" for="exampleCheck1"> {{checkvalue? ('Completed') : ('Uncompleted')}} </label>
+  </div>
   <button type="reset" class="btn btn-secondary" >Reset</button>
   <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
   <button type="button" class="btn btn-primary" (click)="editItem()">Submit</button>

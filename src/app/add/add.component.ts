@@ -9,20 +9,29 @@ import {Router} from '@angular/router';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-@ViewChild('newTodoName') newTodo: ElementRef;
+  @ViewChild('element') element: ElementRef;
+  @ViewChild('newTodoName') newTodo: ElementRef;
+  checkval = 'Uncompleted';
   constructor(private itemsServices: ItemService , private route: Router){ }
-
   ngOnInit(): void {
+    // this.checkval = (this.element.nativeElement.checked) ? ('Completed') : ('Uncompleted');
   }
-
   addNew(): void{
-    const newTodoItem = new ItemData(4, this.newTodo.nativeElement.value);
+    const newTodoItem = new ItemData(4, this.newTodo.nativeElement.value , this.element.nativeElement.checked);
     if ( this.newTodo.nativeElement.value === '' ){
       alert('enter name');
     }else {
       this.itemsServices.addNewItem(newTodoItem);
       this.route.navigate(['/home']);
       console.log(newTodoItem);
+      console.log('check ' , this.element.nativeElement.checked);
+      console.log(this.checkval);
     }
   }
+  chaneitem(){
+    this.checkval = this.element.nativeElement.checked ? 'Completed' : 'Uncompleted';
+  }
+  // changeSelection(){
+  //   this.isChecked = this.isChecked ? true : false ;
+  // }
 }
