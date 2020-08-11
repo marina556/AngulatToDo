@@ -7,8 +7,8 @@
   <div class="form-group form-check">
 <!--    <input type="checkbox" class="form-check-input" id="exampleCheck3" #element  (change)="chaneitem()" >-->
 <!--    <label class="form-check-label" for="exampleCheck3">{{checkval}}</label>-->
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="checkvalue">
-    <label class="form-check-label" for="exampleCheck1"> {{checkvalue? ('Completed') : ('Uncompleted')}} </label>
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="thisItem.checkItem" name="first">
+    <label class="form-check-label" for="exampleCheck1"> {{thisItem.checkItem? ('Completed') : ('Uncompleted')}} </label>
   </div>
   <button type="reset" class="btn btn-secondary" >Reset</button>
   <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancel</button>

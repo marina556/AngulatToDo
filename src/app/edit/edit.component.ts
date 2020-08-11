@@ -10,12 +10,10 @@ import {ItemData} from '../itemData';
 })
 export class EditComponent implements OnInit {
   @ViewChild('element') element: ElementRef;
-  checkval = 'Uncompleted';
   @ViewChild('editTodoName') editTodoName: ElementRef;
   id: number;
   item: ItemData[];
   thisItem;
-  checkvalue: any;
 
   constructor(private route: ActivatedRoute, private itemsServices: ItemService, private rout: Router) {
   }
@@ -28,7 +26,6 @@ export class EditComponent implements OnInit {
       this.item = this.itemsServices.getItemsServices();
       const indexItem = this.item.findIndex(i => i.id === this.id);
       this.thisItem = this.item[indexItem];
-      this.checkvalue = this.thisItem.checkItem;
       console.log('item : ', this.thisItem);
   }
 
@@ -42,8 +39,5 @@ export class EditComponent implements OnInit {
       this.itemsServices.editItem(this.id, val, boolVal);
       this.rout.navigate(['/home']);
     }
-  }
-  chaneitem(){
-    this.checkval = this.element.nativeElement.checked ? 'Completed' : 'Uncompleted';
   }
 }
