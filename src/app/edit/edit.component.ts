@@ -40,10 +40,10 @@ export class EditComponent implements OnInit {
     const boolVal = this.element.nativeElement.checked;
     if (val === '') {
       this.modalRef = this.modalService.show(this.modalValidName, {class: 'modal-sm'});
-    } else if (val === this.thisItem.name && boolVal === this.thisItem.checkItem) {
+    } else if ((val === this.thisItem.name) && (boolVal === this.thisItem.checkItem)) {
       this.modalRef = this.modalService.show(this.modificationContinues, {class: 'modal-sm'});
       console.log(boolVal === this.thisItem.checkItem);
-      console.log(val === this.thisItem.name && boolVal);
+      console.log(val === this.thisItem.name);
       console.log(val === this.thisItem.name && boolVal === this.thisItem.checkItem);
     }else{
       this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
