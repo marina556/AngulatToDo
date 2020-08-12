@@ -10,6 +10,27 @@
   </div>
   <button type="reset" class="btn btn-secondary" >Reset</button>
   <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
-  <button type="button" class="btn btn-primary" (click)="editItem()">Submit</button>
+  <button type="button" class="btn btn-primary" (click)="editItem(template)">Submit</button>
 </form>
 
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p  style="text-align: justify">Modified successfully :)</p>
+    <button type="button" class="btn btn-danger m-1" (click)="confirm()">Ok</button>
+  </div>
+</ng-template>
+
+<ng-template #template2>
+  <div class="modal-body text-center">
+    <p  style="text-align: justify">please Enter The Name of new Item :)</p>
+    <button type="button" class="btn btn-danger m-1" (click)="confirm2()">Ok</button>
+  </div>
+</ng-template>
+
+<ng-template #template3>
+  <div class="modal-body text-center">
+  <p style="text-align: justify">You did not make any modifications !!</p>
+    <button type="button" class="btn btn-danger m-1" (click)="confirm2()">Modification continues</button>
+    <button type="button" class="btn btn-danger m-1" (click)="confirm()">Home Page</button>
+  </div>
+</ng-template>

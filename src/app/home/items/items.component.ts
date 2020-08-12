@@ -11,6 +11,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 export class ItemsComponent implements OnInit {
   id: number;
   @ViewChild('element1') element1;
+  @ViewChild('template2') modalValidName;
   taskItem: ItemData[];
   UnCompleted: ItemData[];
   checked;
@@ -30,6 +31,7 @@ export class ItemsComponent implements OnInit {
   confirm(): void {
     this.itemsServices.deletItem(this.id);
     this.modalRef.hide();
+    this.modalRef = this.modalService.show(this.modalValidName, {class: 'modal-sm'});
   }
 
   decline(): void {
@@ -38,5 +40,8 @@ export class ItemsComponent implements OnInit {
   deletItem(i): void{
     this.id = +i;
     console.log(i);
+  }
+  confirm2(): void{
+    this.modalRef.hide();
   }
 }
