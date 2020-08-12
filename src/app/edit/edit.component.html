@@ -5,7 +5,7 @@
     <input #editTodoName type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Name Here" [value]="thisItem.name">
   </div>
   <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="thisItem.checkItem" #element name="first">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="thisItem.checkItem" name="first">
     <label class="form-check-label" for="exampleCheck1"> {{thisItem.checkItem? ('Completed') : ('Uncompleted')}} </label>
   </div>
   <button type="reset" class="btn btn-secondary" >Reset</button>

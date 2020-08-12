@@ -18,7 +18,7 @@ export class EditComponent implements OnInit {
   id: number;
   item: ItemData[];
   thisItem;
-  checkval = 'Uncompleted';
+  oldCheckVal: boolean;
   modalRef: BsModalRef;
   constructor(private route: ActivatedRoute,
               private itemsServices: ItemService,
@@ -33,6 +33,7 @@ export class EditComponent implements OnInit {
       this.item = this.itemsServices.getItemsServices();
       const indexItem = this.item.findIndex(i => i.id === this.id);
       this.thisItem = this.item[indexItem];
+      this.oldCheckVal = this.thisItem.checkItem;
   }
 
   editItem(template: TemplateRef<any>): void {
@@ -40,11 +41,13 @@ export class EditComponent implements OnInit {
     // const boolVal = this.element.nativeElement.checked;
     if (val === '') {
       this.modalRef = this.modalService.show(this.modalValidName, {class: 'modal-sm'});
-    // } else if ((val === this.thisItem.name) && (boolVal === this.thisItem.checkItem)) {
-    //   this.modalRef = this.modalService.show(this.modificationContinues, {class: 'modal-sm'});
-    //   console.log(boolVal === this.thisItem.checkItem);
-    //   console.log(val === this.thisItem.name);
-    //   console.log(val === this.thisItem.name && boolVal === this.thisItem.checkItem);
+    } else if ((val === this.thisItem.name && (this.oldCheckVal === this.thisItem.checkItem) )) {
+      console.log(this.oldCheckVal);
+      console.log(this.thisItem.checkItem);
+      this.modalRef = this.modalService.show(this.modificationContinues, {class: 'modal-sm'});
+      // console.log(this.thisItem.checkItem);
+      // console.log(val === this.thisItem.name);
+      // console.log(val === this.thisItem.name && this.thisItem.checkItem);
     }
     else{
       this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
