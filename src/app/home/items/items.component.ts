@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ItemService} from '../../core/services/item.service';
 import {ItemData} from '../../itemData';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
@@ -28,13 +28,11 @@ export class ItemsComponent implements OnInit {
   }
 
   confirm(): void {
-    // this.message = 'Confirmed!';
     this.itemsServices.deletItem(this.id);
     this.modalRef.hide();
   }
 
   decline(): void {
-    // this.message = 'Declined!';
     this.modalRef.hide();
   }
   deletItem(i): void{
