@@ -17,8 +17,8 @@
         </div>
       </div>
       <div class="form-group form-check col-12 col-md-2 m-2" >
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="item.checkItem">
-        <label class="form-check-label" for="exampleCheck1"> {{item.checkItem ? ('Completed') : ('Uncompleted')}} </label>
+        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.checkItem">
+        <label class="form-check-label" [for]="item.id"> {{item.checkItem ? ('Completed') : ('Uncompleted')}} </label>
       </div>
     </div>
   </div>
@@ -38,13 +38,12 @@
           </div>
           <div class="col-6">
             <button class="btn btn-danger" (click)="deletItem(item.id)" (click)="openModal(template)">Delete</button>
-<!--            <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button>-->
           </div>
         </div>
       </div>
       <div class="form-group form-check col-12 col-md-2 m-2" >
-        <input type="checkbox" class="form-check-input" id="exampleCheck" [(ngModel)]="item.checkItem">
-        <label class="form-check-label" for="exampleCheck"> {{item.checkItem ? ('Completed') : ('Uncompleted')}} </label>
+        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.checkItem">
+        <label class="form-check-label" [for]="item.id" > {{item.checkItem ? ('Completed') : ('Uncompleted')}} </label>
       </div>
     </div>
   </div>

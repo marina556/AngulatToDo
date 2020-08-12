@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Item} from '../interfaces/item';
 import {ItemData} from '../../itemData';
 
 @Injectable({
   providedIn: 'root'
 })
 
-// this.http.get<Item>('taskItem').subscribe( x => {
-//   console.log(x);
-// });
 export class ItemService {
   x = 0;
   private taskItem: ItemData[] = [
@@ -25,7 +21,6 @@ export class ItemService {
     return this.x;
   }
   addNewItem(item): void{
-    // const newTodoItem = new ItemData(4, 'marina');
     item.id = this.getId();
     this.taskItem.push(item);
   }
@@ -35,7 +30,7 @@ export class ItemService {
     this.taskItem[indexItem].name = val;
     this.taskItem[indexItem].checkItem = boolVal;
   }
-  deletItem(id){
+  deletItem(id): void{
     const indexItem = this.taskItem.findIndex(i => i.id === id);
     this.taskItem.splice(indexItem, 1);
   }

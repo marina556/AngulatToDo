@@ -13,7 +13,7 @@ export class EditComponent implements OnInit {
   @ViewChild('editTodoName') editTodoName: ElementRef;
   id: number;
   item: ItemData[];
-  thisItem;
+  thisItem: any;
 
   constructor(private route: ActivatedRoute, private itemsServices: ItemService, private rout: Router) {
   }

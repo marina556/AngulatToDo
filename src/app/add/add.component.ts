@@ -14,7 +14,6 @@ export class AddComponent implements OnInit {
   checkval = 'Uncompleted';
   constructor(private itemsServices: ItemService , private route: Router){ }
   ngOnInit(): void {
-    // this.checkval = (this.element.nativeElement.checked) ? ('Completed') : ('Uncompleted');
   }
   addNew(): void{
     const newTodoItem = new ItemData(4, this.newTodo.nativeElement.value , this.element.nativeElement.checked);
@@ -28,7 +27,7 @@ export class AddComponent implements OnInit {
       console.log(this.checkval);
     }
   }
-  chaneitem(){
+  chaneitem(): void{
     this.checkval = this.element.nativeElement.checked ? 'Completed' : 'Uncompleted';
   }
   // changeSelection(){
