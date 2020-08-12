@@ -21,7 +21,7 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {
   }
   addNew(template: TemplateRef<any>): void{
-    const newTodoItem = new ItemData(4, this.newTodo.nativeElement.value , this.element.nativeElement.checked);
+    const newTodoItem = new ItemData(4,this.newTodo.nativeElement.value , this.element.nativeElement.checked);
     if ( this.newTodo.nativeElement.value === '' ){
       this.modalRef = this.modalService.show(this.modalValidName, {class: 'modal-sm'});
     }else {

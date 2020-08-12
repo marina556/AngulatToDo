@@ -1,7 +1,7 @@
 <h2>Create New ToDo Item</h2>
 <form>
     <div class="form-group">
-      <label  for="exampleInputEmail1">Name : </label>
+      <label  for="exampleInputEmail1">Name: </label>
       <input #newTodoName type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Name Here">
     </div>
     <div class="form-group form-check">
@@ -17,7 +17,7 @@
 <ng-template #template>
   <div class="modal-body text-center">
     <p  style="text-align: justify">You have added an item. If you want to add more, you must click Add another item. else click OK to go to Home Page :)</p>
-    <button type="button" class="btn btn-danger m-1" (click)="confirm()">Ok</button>
+    <button type="button" class="btn btn-secondary m-1" (click)="confirm()">Ok</button>
     <button type="button" class="btn btn-secondary m-1" (click)="AddNewItem()" >Add New Item</button>
   </div>
 </ng-template>
@@ -25,7 +25,7 @@
 <ng-template #template2>
   <div class="modal-body text-center">
     <p  style="text-align: justify">please Enter The Name of new Item :)</p>
-    <button type="button" class="btn btn-danger m-1" (click)="confirm2()">Ok</button>
+    <button type="button" class="btn btn-secondary m-1" (click)="confirm2()">Ok</button>
   </div>
 </ng-template>
 

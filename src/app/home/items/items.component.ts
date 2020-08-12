@@ -18,7 +18,8 @@ export class ItemsComponent implements OnInit {
 
   modalRef: BsModalRef;
   message: string;
-  constructor(private itemsServices: ItemService, private modalService: BsModalService) { }
+  constructor(private itemsServices: ItemService,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.taskItem = this.itemsServices.getItemsServices();

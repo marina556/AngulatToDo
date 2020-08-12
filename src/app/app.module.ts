@@ -11,7 +11,6 @@ import { EditComponent } from './edit/edit.component';
 import { ItemsComponent } from './home/items/items.component';
 import {FormsModule} from '@angular/forms';
 import {ModalModule} from 'ngx-bootstrap/modal';
-// import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [

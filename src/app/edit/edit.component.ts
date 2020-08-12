@@ -11,7 +11,6 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  // @ViewChild('element') element: ElementRef;
   @ViewChild('editTodoName') editTodoName: ElementRef;
   @ViewChild('template2') modalValidName;
   @ViewChild('template3') modificationContinues;
@@ -38,26 +37,20 @@ export class EditComponent implements OnInit {
 
   editItem(template: TemplateRef<any>): void {
     const val = this.editTodoName.nativeElement.value;
-    // const boolVal = this.element.nativeElement.checked;
     if (val === '') {
       this.modalRef = this.modalService.show(this.modalValidName, {class: 'modal-sm'});
     } else if ((val === this.thisItem.name && (this.oldCheckVal === this.thisItem.checkItem) )) {
       console.log(this.oldCheckVal);
       console.log(this.thisItem.checkItem);
       this.modalRef = this.modalService.show(this.modificationContinues, {class: 'modal-sm'});
-      // console.log(this.thisItem.checkItem);
-      // console.log(val === this.thisItem.name);
-      // console.log(val === this.thisItem.name && this.thisItem.checkItem);
     }
     else{
       this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-      // this.itemsServices.editItem(this.id, val, boolVal);
       this.rout.navigate(['/home']);
     }
   }
   confirm(): void {
     const val = this.editTodoName.nativeElement.value;
-    // const boolVal = this.element.nativeElement.checked;
     this.itemsServices.editItem(this.id, val, this.thisItem.checkItem);
     this.modalRef.hide();
     this.rout.navigate(['/home']);
@@ -65,7 +58,4 @@ export class EditComponent implements OnInit {
   confirm2(): void{
     this.modalRef.hide();
   }
-  // confirm3(): void{
-  //   this.modalRef.hide();
-  // }
 }
