@@ -9,7 +9,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { ItemsComponent } from './home/items/items.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ModalModule} from 'ngx-bootstrap/modal';
 
 @NgModule({
@@ -27,6 +27,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
         AlertModule.forRoot(),
         FormsModule,
       ModalModule.forRoot(),
+      ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
