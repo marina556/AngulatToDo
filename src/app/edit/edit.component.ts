@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ItemService} from '../core/services/item.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ItemData} from '../core/interfaces/item';
 
 
@@ -22,7 +22,8 @@ export class EditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private itemsServices: ItemService,
               private rout: Router,
-              private modalService: BsModalService) {
+              private modalService: BsModalService,
+              private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -33,9 +34,9 @@ export class EditComponent implements OnInit {
       const indexItem = this.item.findIndex(i => i.id === this.id);
       this.thisItem = this.item[indexItem];
 
-      this.editForm = new FormGroup({
-        editTodoName: new FormControl(this.thisItem.name, Validators.required),
-        editTodoCheck: new FormControl(this.thisItem.checkItem)
+      this.editForm = this.fb.group({
+        editTodoName: [this.thisItem.name, Validators.required],
+        editTodoCheck: [this.thisItem.checkItem]
       });
   }
 

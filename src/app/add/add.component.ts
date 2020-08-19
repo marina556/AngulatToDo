@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ItemService} from '../core/services/item.service';
 import {Router} from '@angular/router';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -13,13 +13,14 @@ export class AddComponent implements OnInit {
   @ViewChild('template2') modalValidName;
   checkVal = 'Uncompleted';
   modalRef: BsModalRef;
-  addForm = new FormGroup({
-    element : new FormControl(false),
-    newTodoName : new FormControl('', Validators.required),
+  addForm = this.fb.group({
+    element : [false],
+    newTodoName : ['', Validators.required]
   });
   constructor(private itemsServices: ItemService,
               private route: Router,
-              private modalService: BsModalService){}
+              private modalService: BsModalService,
+              private fb: FormBuilder){}
   ngOnInit(): void {
   }
   addNew(template: TemplateRef<any>): void{
