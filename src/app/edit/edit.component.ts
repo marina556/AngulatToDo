@@ -1,9 +1,9 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ItemService} from '../core/services/item.service';
-import {ItemData} from '../itemData';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ItemData} from '../core/interfaces/item';
 
 
 @Component({

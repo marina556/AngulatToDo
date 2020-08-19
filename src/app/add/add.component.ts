@@ -1,6 +1,5 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ItemService} from '../core/services/item.service';
-import {ItemData} from '../itemData';
 import {Router} from '@angular/router';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -24,7 +23,11 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {
   }
   addNew(template: TemplateRef<any>): void{
-    const newTodoItem = new ItemData(4, this.addForm.value.newTodoName , this.addForm.value.element);
+    const newTodoItem = {
+        id: 4,
+        name: this.addForm.value.newTodoName,
+        checkItem: this.addForm.value.element
+      };
     this.itemsServices.addNewItem(newTodoItem);
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }

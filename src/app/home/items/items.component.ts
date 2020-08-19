@@ -1,7 +1,7 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ItemService} from '../../core/services/item.service';
-import {ItemData} from '../../itemData';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {ItemData} from '../../core/interfaces/item';
 
 @Component({
   selector: 'app-items',
@@ -40,7 +40,6 @@ export class ItemsComponent implements OnInit {
   }
   deletItem(i): void{
     this.id = +i;
-    console.log(i);
   }
   confirm2(): void{
     this.modalRef.hide();

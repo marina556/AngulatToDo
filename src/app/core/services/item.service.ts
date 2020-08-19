@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ItemData} from '../../itemData';
+import {ItemData} from '../interfaces/item';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +8,27 @@ import {ItemData} from '../../itemData';
 export class ItemService {
   x = 0;
   private taskItem: ItemData[] = [
-    new ItemData(this.getId(), 'create components', false),
-    new ItemData(this.getId(), 'create header', false),
-    new ItemData(this.getId(), 'create listItem', false)];
+    {
+      id: this.getId(),
+      name: 'create components',
+      checkItem: true
+    },
+    {
+      id: this.getId(),
+      name: 'create header',
+      checkItem: false
+    },
+    {
+      id: this.getId(),
+      name: 'create listItem',
+      checkItem: true
+    }];
+    // new ItemData(this.getId(), 'create components', false),
+    // new ItemData(this.getId(), 'create header', false),
+    // new ItemData(this.getId(), 'create listItem', false)];
   constructor() { }
 
-  getItemsServices() {
+  getItemsServices(): ItemData[] {
     return this.taskItem;
   }
   getId(): number{

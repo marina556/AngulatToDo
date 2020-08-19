@@ -1,4 +1,5 @@
-export interface Item {
+export interface ItemData {
   id: number;
-  task: string;
+  name: string;
+  checkItem: boolean;
 }
