@@ -1,8 +1,8 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ItemService} from '../core/services/item.service';
 import {Router} from '@angular/router';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -10,9 +10,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  @ViewChild('template2') modalValidName;
+  @ViewChild('template2') modalValidName?: ElementRef;
   checkVal = 'Uncompleted';
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   addForm = this.fb.group({
     element : [false],
     newTodoName : ['', Validators.required]
@@ -23,7 +23,7 @@ export class AddComponent implements OnInit {
               private fb: FormBuilder){}
   ngOnInit(): void {
   }
-  addNew(template: TemplateRef<any>): void{
+  addNew(template: TemplateRef<object>): void{
     const newTodoItem = {
         id: 4,
         name: this.addForm.value.newTodoName,
@@ -36,11 +36,11 @@ export class AddComponent implements OnInit {
     this.checkVal = this.addForm.value.element ? 'Completed' : 'Uncompleted';
   }
   AddNewItem(): void{
-    this.modalRef.hide();
+    this.modalRef?.hide();
     this.addForm.reset();
   }
   confirm(): void {
-    this.modalRef.hide();
+    this.modalRef?.hide();
     this.route.navigate(['/home']);
     this.modalRef = this.modalService.show(this.modalValidName, {class: 'modal-sm'});
   }

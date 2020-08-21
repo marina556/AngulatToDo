@@ -9,23 +9,22 @@ import {ItemData} from '../../core/interfaces/item';
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
-  id: number;
-  @ViewChild('element1') element1;
-  @ViewChild('template2') modalValidName;
-  taskItem: ItemData[];
-  UnCompleted: ItemData[];
-  checked;
+  id = 0;
+  @ViewChild('element1') element1?: object;
+  @ViewChild('template2') modalValidName?: object;
+  taskItem!: ItemData[];
 
-  modalRef: BsModalRef;
-  message: string;
+  modalRef!: BsModalRef;
+  message!: string;
   constructor(private itemsServices: ItemService,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService) {
+  }
 
   ngOnInit(): void {
     this.taskItem = this.itemsServices.getItemsServices();
   }
 
-  openModal(template: TemplateRef<any>): void {
+  openModal(template: TemplateRef<object>): void {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
@@ -38,7 +37,7 @@ export class ItemsComponent implements OnInit {
   decline(): void {
     this.modalRef.hide();
   }
-  deletItem(i): void{
+  deletItem(i: string | number): void{
     this.id = +i;
   }
   confirm2(): void{
