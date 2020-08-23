@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ItemData} from '../interfaces/item';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,46 +9,30 @@ import {ItemData} from '../interfaces/item';
 
 export class ItemService {
   x = 0;
-  private taskItem: ItemData[] = [
-    {
-      id: this.getId(),
-      name: 'create components',
-      checkItem: true
-    },
-    {
-      id: this.getId(),
-      name: 'create header',
-      checkItem: false
-    },
-    {
-      id: this.getId(),
-      name: 'create listItem',
-      checkItem: true
-    }];
-    // new ItemData(this.getId(), 'create components', false),
-    // new ItemData(this.getId(), 'create header', false),
-    // new ItemData(this.getId(), 'create listItem', false)];
-  constructor() { }
-
-  getItemsServices(): ItemData[] {
-    return this.taskItem;
+  constructor(
+    private httpClient: HttpClient
+  ) {
   }
-  getId(): number{
-    this.x += 1;
-    return this.x;
-  }
-  addNewItem(item): void{
-    item.id = this.getId();
-    this.taskItem.push(item);
+  getItemsServices(): Observable<ItemData[]> {
+    return this.httpClient.get<ItemData[]>('http://localhost:3000/todos');
   }
 
-  editItem(id, val, boolVal): void{
-    const indexItem = this.taskItem.findIndex(i => i.id === id);
-    this.taskItem[indexItem].name = val;
-    this.taskItem[indexItem].checkItem = boolVal;
+  getItem(id: string): Observable<ItemData> {
+    return this.httpClient.get<ItemData>(`http://localhost:3000/todos/${id}`);
   }
-  deletItem(id): void{
-    const indexItem = this.taskItem.findIndex(i => i.id === id);
-    this.taskItem.splice(indexItem, 1);
+  addNewItem(item: ItemData): void{
+    this.httpClient.post<ItemData>('http://localhost:3000/todos', item ).subscribe();
+  }
+
+  editItem(id: string, item: ItemData): void{
+    this.httpClient.put(`http://localhost:3000/todos/${id}`, item).subscribe();
+  }
+  deleteItem(id: string): void{
+    this.httpClient.delete(`http://localhost:3000/todos/${id}`).subscribe();
+  }
+
+  editItemCheck(obj: ItemData): void{
+      this.httpClient.put(`http://localhost:3000/todos/${obj.id}`, obj).subscribe();
   }
 }
+

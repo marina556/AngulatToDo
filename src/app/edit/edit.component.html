@@ -18,7 +18,8 @@
       formControlName="editTodoCheck"
       name="first"
     >
-    <label class="form-check-label" for="exampleCheck1"> {{editForm.value.editTodoCheck ? ('Completed') : ('Uncompleted')}} </label>
+    <label class="form-check-label" for="exampleCheck1"> {{editForm.value ? ('Completed') : ('Uncompleted')}} </label>
+<!--    arguments.controls.value.editTodoCheck-->
   </div>
   <button type="reset" class="btn btn-secondary" >Reset</button>
   <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
@@ -40,3 +41,4 @@
     <button type="button" class="btn btn-secondary m-1" (click)="confirm()">Home Page</button>
   </div>
 </ng-template>
+
