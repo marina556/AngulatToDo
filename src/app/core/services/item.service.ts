@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 
 export class ItemService {
-  x = 0;
+  nameValid: number;
   constructor(
     private httpClient: HttpClient
   ) {
@@ -20,8 +20,8 @@ export class ItemService {
   getItem(id: string): Observable<ItemData> {
     return this.httpClient.get<ItemData>(`http://localhost:3000/todos/${id}`);
   }
-  addNewItem(item: ItemData): void{
-    this.httpClient.post<ItemData>('http://localhost:3000/todos', item ).subscribe();
+  addNewItem(item: ItemData): Observable<{ message: string }> {
+    return this.httpClient.post<{message: string}>('http://localhost:3000/todos', item );
   }
 
   editItem(id: string, item: ItemData): void{
@@ -35,4 +35,3 @@ export class ItemService {
       this.httpClient.put(`http://localhost:3000/todos/${obj.id}`, obj).subscribe();
   }
 }
-

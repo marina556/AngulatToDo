@@ -23,14 +23,17 @@ export class AddComponent implements OnInit {
               private fb: FormBuilder){}
   ngOnInit(): void {
   }
-  addNew(template: TemplateRef<object>): void{
+  addNew(successTemplate: TemplateRef<object>, errorTemplate: TemplateRef<object> ): void{
     const newTodoItem = {
         id: '4',
         name: this.addForm.value.newTodoName,
         completed: this.addForm.value.element
       };
-    this.itemsServices.addNewItem(newTodoItem);
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.itemsServices.addNewItem(newTodoItem).subscribe(() => {
+      this.modalRef = this.modalService.show(successTemplate, {class: 'modal-sm'});
+    }, error => {
+      this.modalRef = this.modalService.show(errorTemplate, {class: 'modal-sm'});
+    });
   }
   chaneItem(): void{
     this.checkVal = this.addForm.value.element ? 'Completed' : 'Uncompleted';
