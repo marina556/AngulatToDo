@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ItemService} from '../core/services/item.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ItemData} from '../core/interfaces/item';
 
 @Component({
@@ -17,10 +17,8 @@ export class EditComponent implements OnInit {
   modalRef: BsModalRef;
   name: string;
   obj: object;
-  editForm = this.fb.group({
-    editTodoName: [, Validators.required],
-    editTodoCheck: []
-  });
+  editForm: FormGroup;
+
   constructor(private route: ActivatedRoute,
               private itemsServices: ItemService,
               private rout: Router,
@@ -28,13 +26,17 @@ export class EditComponent implements OnInit {
               private fb: FormBuilder) {
   }
   ngOnInit(): void {
+    this.editForm = this.fb.group({
+      editTodoName: ['', Validators.required],
+      editTodoCheck: ['']
+    });
     this.route.paramMap.subscribe((p: Params) => {
       this.id = p.get('id');
     });
     this.itemsServices.getItem(this.id).subscribe(data => {
       this.item = data;
-      this.editForm.value.e = this.item.completed;
-      this.editForm.value.editTodoName = this.item.name;
+      this.editForm.controls.editTodoCheck.setValue(this.item.completed);
+      this.editForm.controls.editTodoName.setValue(this.item.name);
       });
   }
 
