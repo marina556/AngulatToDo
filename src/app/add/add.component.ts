@@ -32,7 +32,7 @@ export class AddComponent implements OnInit {
     this.itemsServices.addNewItem(newTodoItem);
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
-  chaneitem(): void{
+  chaneItem(): void{
     this.checkVal = this.addForm.value.element ? 'Completed' : 'Uncompleted';
   }
   AddNewItem(): void{

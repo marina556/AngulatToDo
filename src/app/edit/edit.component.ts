@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ItemService} from '../core/services/item.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {ItemData} from '../core/interfaces/item';
 
 @Component({
@@ -13,29 +13,28 @@ import {ItemData} from '../core/interfaces/item';
 export class EditComponent implements OnInit {
   @ViewChild('template3') modificationContinues?: object;
   id: string;
-  item: ItemData[] = [];
-  itemm: ItemData;
+  item: ItemData;
   modalRef: BsModalRef;
-  editForm: FormGroup;
-
+  name: string;
+  obj: object;
+  editForm = this.fb.group({
+    editTodoName: [, Validators.required],
+    editTodoCheck: []
+  });
   constructor(private route: ActivatedRoute,
               private itemsServices: ItemService,
               private rout: Router,
               private modalService: BsModalService,
               private fb: FormBuilder) {
   }
-
   ngOnInit(): void {
-      const thisItem = +'5f41821f2d871339c42bfd73';
-      this.route.paramMap.subscribe((p: Params) => {
+    this.route.paramMap.subscribe((p: Params) => {
       this.id = p.get('id');
-      });
-      this.itemsServices.getItem(this.id).subscribe(data => {
-        this.itemm = data;
-        this.editForm = this.fb.group({
-          editTodoName: [this.itemm.name, Validators.required],
-          editTodoCheck: [this.itemm.completed]
-        });
+    });
+    this.itemsServices.getItem(this.id).subscribe(data => {
+      this.item = data;
+      this.editForm.value.e = this.item.completed;
+      this.editForm.value.editTodoName = this.item.name;
       });
   }
 

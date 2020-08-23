@@ -4,7 +4,7 @@
     <div class="row p-2  mt-2 border" *ngIf="item.completed">
       <div class="col-md-5 col-12 row">
         <p class="col-4">{{i+1}}</p>
-        <p class="col-8" class="complete">{{item.name}}</p>
+        <p class="col-8 complete">{{item.name}}</p>
       </div>
       <div class="col-md-5 col-12">
         <div class="row">
@@ -17,7 +17,10 @@
         </div>
       </div>
       <div class="form-group form-check col-12 col-md-2 m-2" >
-        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.completed">
+        <input type="checkbox"
+               class="form-check-input"
+               [id]="item.id" [(ngModel)]="item.completed"
+               (change)="editCheck(item.id, item.name, item.completed)">
         <label class="form-check-label" [for]="item.id"> {{item.completed ? ('Completed') : ('Uncompleted')}} </label>
       </div>
     </div>
@@ -42,7 +45,11 @@
         </div>
       </div>
       <div class="form-group form-check col-12 col-md-2 m-2" >
-        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.completed">
+        <input type="checkbox"
+               class="form-check-input"
+               [id]="item.id"
+               [(ngModel)]="item.completed"
+               (change)="editCheck(item.id, item.name, item.completed)">
         <label class="form-check-label" [for]="item.id" > {{item.completed ? ('Completed') : ('Uncompleted')}} </label>
       </div>
     </div>
