@@ -32,12 +32,12 @@ export class EditComponent implements OnInit {
     });
     this.route.paramMap.subscribe((p: Params) => {
       this.id = p.get('id');
-    });
-    this.itemsServices.getItem(this.id).subscribe(data => {
-      this.item = data;
-      this.editForm.controls.editTodoCheck.setValue(this.item.completed);
-      this.editForm.controls.editTodoName.setValue(this.item.name);
+      this.itemsServices.getItem(this.id).subscribe(data => {
+        this.item = data;
+        this.editForm.controls.editTodoCheck.setValue(this.item.completed);
+        this.editForm.controls.editTodoName.setValue(this.item.name);
       });
+    });
   }
 
   editItem(template: TemplateRef<object>): void {
