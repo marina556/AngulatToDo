@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ItemService} from '../core/services/item.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import { FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ItemData} from '../core/interfaces/item';
 
 @Component({
@@ -12,11 +12,11 @@ import {ItemData} from '../core/interfaces/item';
 })
 export class EditComponent implements OnInit {
   @ViewChild('template3') modificationContinues?: object;
-  id = 0 ;
+  id: string;
   item: ItemData[] = [];
-  modalRef!: BsModalRef;
-  // tslint:disable-next-line:no-any
-  editForm?: any;
+  itemm: ItemData;
+  modalRef: BsModalRef;
+  editForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
               private itemsServices: ItemService,
@@ -26,32 +26,32 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      let thisItem;
+      const thisItem = +'5f41821f2d871339c42bfd73';
       this.route.paramMap.subscribe((p: Params) => {
-      this.id = +p.get('id');
-    });
-      this.item = this.itemsServices.getItemsServices();
-      const indexItem = this.item.findIndex(i => i.id === this.id);
-      thisItem = this.item[indexItem];
-
-      this.editForm = this.fb.group({
-        editTodoName: [thisItem.name, Validators.required],
-        editTodoCheck: [thisItem.checkItem]
+      this.id = p.get('id');
+      });
+      this.itemsServices.getItem(this.id).subscribe(data => {
+        this.itemm = data;
+        this.editForm = this.fb.group({
+          editTodoName: [this.itemm.name, Validators.required],
+          editTodoCheck: [this.itemm.completed]
+        });
       });
   }
 
   editItem(template: TemplateRef<object>): void {
-    console.log('this.editForm : ');
-    console.log(this.editForm);
-    console.log(typeof (this.editForm));
     if ( this.editForm.pristine){
       this.modalRef = this.modalService.show(this.modificationContinues, {class: 'modal-sm'});
     }
     else{
       this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
       this.rout.navigate(['/home']);
-      this.itemsServices.editItem(this.id, this.editForm.value.editTodoName,
-        this.editForm.value.editTodoCheck);
+      const newTodoItem = {
+        id: this.id,
+        name:  this.editForm.value.editTodoName,
+        completed: this.editForm.value.editTodoCheck
+      };
+      this.itemsServices.editItem(this.id, newTodoItem);
     }
   }
   confirm(): void {

@@ -9,25 +9,28 @@ import {ItemData} from '../../core/interfaces/item';
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
-  id = 0;
+  id = '';
   @ViewChild('element1') element1?: object;
   @ViewChild('template2') modalValidName?: object;
-  taskItem!: ItemData[];
+  taskItem: ItemData[];
 
-  modalRef!: BsModalRef;
+  modalRef: BsModalRef;
   message!: string;
   constructor(private itemsServices: ItemService,
               private modalService: BsModalService) {
   }
-
   ngOnInit(): void {
-    this.taskItem = this.itemsServices.getItemsServices();
+    // this.taskItem = this.itemsServices.getItemsServices();
+    this.itemsServices.getItemsServices().subscribe(data => {
+      this.taskItem = data;
+      console.log(data);
+  });
   }
-
-  openModal(template: TemplateRef<object>): void {
+  openModal(template: TemplateRef<object>, i: string): void {
+    this.id = i;
+    console.log(this.id);
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
-
   confirm(): void {
     this.itemsServices.deletItem(this.id);
     this.modalRef.hide();
@@ -37,9 +40,10 @@ export class ItemsComponent implements OnInit {
   decline(): void {
     this.modalRef.hide();
   }
-  deletItem(i: string | number): void{
-    this.id = +i;
-  }
+  // deletItem(i: string): void{
+  //   // this.itemsServices.deletItem(i);
+  //   this.id = i;
+  // }
   confirm2(): void{
     this.modalRef.hide();
   }

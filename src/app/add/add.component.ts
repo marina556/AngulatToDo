@@ -25,9 +25,9 @@ export class AddComponent implements OnInit {
   }
   addNew(template: TemplateRef<object>): void{
     const newTodoItem = {
-        id: 4,
+        id: '4',
         name: this.addForm.value.newTodoName,
-        checkItem: this.addForm.value.element
+        completed: this.addForm.value.element
       };
     this.itemsServices.addNewItem(newTodoItem);
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});

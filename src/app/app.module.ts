@@ -11,6 +11,7 @@ import { EditComponent } from './edit/edit.component';
 import { ItemsComponent } from './home/items/items.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ModalModule} from 'ngx-bootstrap/modal';
         AlertModule.forRoot(),
         FormsModule,
       ModalModule.forRoot(),
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      HttpClientModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

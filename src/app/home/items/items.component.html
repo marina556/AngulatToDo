@@ -1,9 +1,9 @@
 <h2 class="mt-4">Done Items</h2>
 <section class="col-sm-12 bg-light border-dark mt-3 p-4" style="border: solid">
-  <div class=" " *ngFor="let item of taskItem" >
-    <div class="row p-2  mt-2 border" *ngIf="item.checkItem">
+  <div class=" " *ngFor="let item of taskItem; index as i" >
+    <div class="row p-2  mt-2 border" *ngIf="item.completed">
       <div class="col-md-5 col-12 row">
-        <p class="col-4">{{item.id}}</p>
+        <p class="col-4">{{i+1}}</p>
         <p class="col-8" class="complete">{{item.name}}</p>
       </div>
       <div class="col-md-5 col-12">
@@ -12,23 +12,23 @@
             <button class="btn btn-secondary " [routerLink]="['/edit',item.id]">edit</button>
           </div>
           <div class="col-6">
-            <button class="btn btn-danger" (click)="deletItem(item.id)" (click)="openModal(template)">Delete</button>
+            <button class="btn btn-danger" (click)="openModal(template, item.id)">Delete</button>
           </div>
         </div>
       </div>
       <div class="form-group form-check col-12 col-md-2 m-2" >
-        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.checkItem">
-        <label class="form-check-label" [for]="item.id"> {{item.checkItem ? ('Completed') : ('Uncompleted')}} </label>
+        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.completed">
+        <label class="form-check-label" [for]="item.id"> {{item.completed ? ('Completed') : ('Uncompleted')}} </label>
       </div>
     </div>
   </div>
 </section>
 <h2 class="mt-5">ToDo Items</h2>
 <section class="col-sm-12  bg-light border-dark mt-3 p-4" style="border: solid">
-  <div *ngFor="let item of taskItem" >
-    <div class="row p-2  mt-2 border" *ngIf="!item.checkItem">
+  <div *ngFor="let item of taskItem; index as i" >
+    <div class="row p-2  mt-2 border" *ngIf="!item.completed">
       <div class="col-md-5 col-12 row">
-        <p class="col-4">{{item.id}}</p>
+        <p class="col-4">{{i+1}}</p>
         <p class="col-8" >{{item.name}}</p>
       </div>
       <div class="col-md-5 col-12">
@@ -37,13 +37,13 @@
             <button class="btn btn-secondary " [routerLink]="['/edit',item.id]">edit</button>
           </div>
           <div class="col-6">
-            <button class="btn btn-danger" (click)="deletItem(item.id)" (click)="openModal(template)">Delete</button>
+            <button class="btn btn-danger" (click)="openModal(template, item.id)">Delete</button>
           </div>
         </div>
       </div>
       <div class="form-group form-check col-12 col-md-2 m-2" >
-        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.checkItem">
-        <label class="form-check-label" [for]="item.id" > {{item.checkItem ? ('Completed') : ('Uncompleted')}} </label>
+        <input type="checkbox" class="form-check-input" [id]="item.id" [(ngModel)]="item.completed">
+        <label class="form-check-label" [for]="item.id" > {{item.completed ? ('Completed') : ('Uncompleted')}} </label>
       </div>
     </div>
   </div>
