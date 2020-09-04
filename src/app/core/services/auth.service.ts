@@ -1,23 +1,26 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {FormGroup} from '@angular/forms';
+import {Auth} from '../interfaces/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
-  login(user: object){
-    return this.http.post(`${environment.apiUrl}/auth/login`, user );
+  constructor(private http: HttpClient) {
   }
 
-  register(user: object){
-    return this.http.post(`${environment.apiUrl}/auth/register`, user );
+  login(user: Auth) {
+    return this.http.post(`${environment.apiUrl}/auth/login`, user);
+  }
+
+  register(user: Auth) {
+    return this.http.post(`${environment.apiUrl}/auth/register`, user);
 
   }
-  getToken(){
+
+  getToken() {
     return localStorage.getItem('token');
   }
 }

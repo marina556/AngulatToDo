@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../core/services/auth.service';
+import {Auth} from '../core/interfaces/auth';
 
 @Component({
   selector: 'app-register',
@@ -9,24 +10,27 @@ import {AuthService} from '../core/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   register = this.fb.group({
-    newTodoName : ['', Validators.required],
-    newTodoPass : ['', Validators.required]
+    newTodoName: ['', Validators.required],
+    newTodoPass: ['', Validators.required]
   });
-  constructor(private fb: FormBuilder , private auth: AuthService) { }
+
+  constructor(private fb: FormBuilder, private auth: AuthService) {
+  }
 
 
   ngOnInit(): void {
   }
-  handelsunmit(): void{
-    const user = {
+
+  handelsunmit(): void {
+    const user: Auth = {
       username: this.register.value.newTodoName,
       password: this.register.value.newTodoPass
     };
 
-    this.auth.register( user ).subscribe(data => {
-      // console.log("not error : " ,data);
+    this.auth.register(user).subscribe(data => {
+      // localStorage.setItem('token', data);
+      console.log('reg :', data);
     }, error => console.log(error));
-    // console.log('login error : ' , error);
   }
 
 }

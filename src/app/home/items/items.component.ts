@@ -15,22 +15,26 @@ export class ItemsComponent implements OnInit {
   taskItem: ItemData[];
   modalRef: BsModalRef;
   message!: string;
+
   constructor(private itemsServices: ItemService,
               private modalService: BsModalService) {
   }
+
   ngOnInit(): void {
     this.getData();
   }
-  getData(): void{
+
+  getData(): void {
     this.itemsServices.getItemsServices().subscribe(data => {
       this.taskItem = data;
-      // console.log('token', this.itemsServices.user);
     });
   }
+
   openModal(template: TemplateRef<object>, i: string): void {
     this.id = i;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
+
   confirm(): void {
     this.itemsServices.deleteItem(this.id);
     this.modalRef.hide();
@@ -42,14 +46,15 @@ export class ItemsComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  confirm2(): void{
+  confirm2(): void {
     this.modalRef.hide();
     this.getData();
   }
-  editCheck(idE: string, nameE: string, checkValE: boolean): void{
+
+  editCheck(idE: string, nameE: string, checkValE: boolean): void {
     const newTodoItem = {
       id: idE,
-      name:  nameE,
+      name: nameE,
       completed: checkValE
     };
     this.itemsServices.editItemCheck(newTodoItem);
