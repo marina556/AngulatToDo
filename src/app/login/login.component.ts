@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       password: this.login.value.newTodoPass
     };
     this.auth.login(user).subscribe(data => {
-      console.log('login : ', typeof data);
+      localStorage.setItem('token', data.access_token);
     }, error => console.log(error));
   }
 

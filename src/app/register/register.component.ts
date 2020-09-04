@@ -28,8 +28,8 @@ export class RegisterComponent implements OnInit {
     };
 
     this.auth.register(user).subscribe(data => {
-      localStorage.setItem('token', data.Token);
-      console.log('reg :', data.Token);
+      localStorage.setItem('token', data.access_token);
+      console.log('reg :', data.access_token);
     }, error => console.log(error));
   }
 
