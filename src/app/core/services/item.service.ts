@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {ItemData} from '../interfaces/item';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +15,24 @@ export class ItemService {
   ) {
   }
   getItemsServices(): Observable<ItemData[]> {
-    return this.httpClient.get<ItemData[]>('http://localhost:3000/todos');
+    return this.httpClient.get<ItemData[]>(`${environment.apiUrl}/todos`);
   }
 
   getItem(id: string): Observable<ItemData> {
-    return this.httpClient.get<ItemData>(`http://localhost:3000/todos/${id}`);
+    return this.httpClient.get<ItemData>(`${environment.apiUrl}/todos/${id}`);
   }
   addNewItem(item: ItemData): Observable<{ message: string }> {
-    return this.httpClient.post<{message: string}>('http://localhost:3000/todos', item );
+    return this.httpClient.post<{message: string}>(`${environment.apiUrl}/todos`, item );
   }
 
   editItem(id: string, item: ItemData): void{
-    this.httpClient.put(`http://localhost:3000/todos/${id}`, item).subscribe();
+    this.httpClient.put(`${environment.apiUrl}/todos/${id}`, item).subscribe();
   }
   deleteItem(id: string): void{
-    this.httpClient.delete(`http://localhost:3000/todos/${id}`).subscribe();
+    this.httpClient.delete(`${environment.apiUrl}/todos/${id}`).subscribe();
   }
 
   editItemCheck(obj: ItemData): void{
-      this.httpClient.put(`http://localhost:3000/todos/${obj.id}`, obj).subscribe();
+      this.httpClient.put(`${environment.apiUrl}/todos/${obj.id}`, obj).subscribe();
   }
 }
