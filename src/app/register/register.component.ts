@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handelsunmit(): void {
+  handleSubmit(): void {
     const user: Auth = {
       username: this.register.value.newTodoName,
       password: this.register.value.newTodoPass

@@ -1,8 +1,9 @@
 <h2>Create New ToDo Item</h2>
 <form [formGroup]="addForm" (ngSubmit)="addNew(successTemplate, nameNotValid)">
   <div class="form-group">
-    <label  for="exampleInputEmail1">Name: </label>
-    <input formControlName="newTodoName"  type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Name Here">
+    <label for="exampleInputEmail1">Name: </label>
+    <input formControlName="newTodoName" type="text" class="form-control" id="exampleInputEmail1"
+           placeholder="Enter Item Name Here">
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck3" formControlName="element" (change)="chaneItem()">
@@ -18,23 +19,24 @@
 <!--module-->
 <ng-template #successTemplate>
   <div class="modal-body text-center">
-    <p  style="text-align: justify">You have added an item. If you want to add more, you must click Add another item. else click OK to go to Home Page :)</p>
+    <p style="text-align: justify">You have added an item. If you want to add more, you must click Add another item.
+      else click OK to go to Home Page :)</p>
     <button type="button" class="btn btn-secondary m-1" (click)="confirm()">Ok</button>
-    <button type="button" class="btn btn-secondary m-1" (click)="AddNewItem()" >Add New Item</button>
+    <button type="button" class="btn btn-secondary m-1" (click)="AddNewItem()">Add New Item</button>
   </div>
 </ng-template>
 
 <ng-template #nameNotValid>
   <div class="modal-body text-center">
-    <p  style="text-align: justify">duplicate name ! please enter new todo</p>
-    <button type="button" class="btn btn-secondary m-1" (click)="AddNewItem()" >ok</button>
+    <p style="text-align: justify">duplicate name ! please enter new todo</p>
+    <button type="button" class="btn btn-secondary m-1" (click)="AddNewItem()">ok</button>
   </div>
 </ng-template>
 
 
 <ng-template #template2>
   <div class="modal-body text-center">
-    <p  style="text-align: justify">Add successfully :)</p>
+    <p style="text-align: justify">Add successfully :)</p>
     <button type="button" class="btn btn-secondary m-1" (click)="this.modalRef?.hide()">Ok</button>
   </div>
 </ng-template>
