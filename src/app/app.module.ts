@@ -11,7 +11,10 @@ import { EditComponent } from './edit/edit.component';
 import { ItemsComponent } from './home/items/items.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {InterceptorInterceptor} from './core/interceptor.interceptor';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import {HttpClientModule} from '@angular/common/http';
     NotFoundComponent,
     AddComponent,
     EditComponent,
-    ItemsComponent
+    ItemsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
     imports: [
         BrowserModule,
@@ -31,7 +36,7 @@ import {HttpClientModule} from '@angular/common/http';
       ReactiveFormsModule,
       HttpClientModule,
     ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

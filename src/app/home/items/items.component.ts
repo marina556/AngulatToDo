@@ -24,6 +24,7 @@ export class ItemsComponent implements OnInit {
   getData(): void{
     this.itemsServices.getItemsServices().subscribe(data => {
       this.taskItem = data;
+      // console.log('token', this.itemsServices.user);
     });
   }
   openModal(template: TemplateRef<object>, i: string): void {

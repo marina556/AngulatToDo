@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {ItemData} from '../interfaces/item';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {exhaustMap, take} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ItemService {
+  user = new BehaviorSubject(null);
   nameValid: number;
   constructor(
     private httpClient: HttpClient
@@ -16,6 +18,9 @@ export class ItemService {
   }
   getItemsServices(): Observable<ItemData[]> {
     return this.httpClient.get<ItemData[]>(`${environment.apiUrl}/todos`);
+    // return this.user.pipe(take(1), exhaustMap(user => {
+    //   return this.httpClient.get<ItemData[]>(`${environment.apiUrl}/todos`);
+    // }));
   }
 
   getItem(id: string): Observable<ItemData> {
