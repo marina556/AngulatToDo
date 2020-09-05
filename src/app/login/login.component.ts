@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../core/services/auth.service';
 import {Auth} from '../core/interfaces/auth';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
     newTodoPass: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder,
+              private auth: AuthService,
+              private route: Router) {
   }
 
   ngOnInit(): void {
@@ -26,8 +29,7 @@ export class LoginComponent implements OnInit {
       password: this.login.value.newTodoPass
     };
     this.auth.login(user).subscribe(data => {
-      localStorage.setItem('token', data.access_token);
+      console.log(data.access_token);
     }, error => console.log(error));
   }
-
 }
