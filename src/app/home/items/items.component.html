@@ -1,40 +1,41 @@
-<h2 class="mt-4">Done Items</h2>
-<section class="col-sm-12 bg-light border-dark mt-3 p-4" style="border: solid">
-  <div class=" " *ngFor="let item of taskItem; index as i">
-    <div class="row p-2  mt-2 border" *ngIf="item.completed">
-      <div class="col-md-5 col-12 row">
-        <p class="col-4">{{i + 1}}</p>
-        <p class="col-8 complete">{{item.name}}</p>
-      </div>
-      <div class="col-md-5 col-12">
-        <div class="row">
-          <div class="col-6">
-            <button class="btn btn-secondary " [routerLink]="['/edit',item.id]">edit</button>
-          </div>
-          <div class="col-6">
-            <button class="btn btn-danger" (click)="openModal(template, item.id)">Delete</button>
+<div class="container">
+  <h2 class="mt-4">Done Items</h2>
+  <section class="col-sm-12 bg-light border-dark mt-3 p-4" style="border: solid">
+    <div *ngFor="let item of taskItem; index as i" class=" ">
+      <div *ngIf="item.completed" class="row p-2  mt-2 border">
+        <div class="col-md-5 col-12 row">
+          <p class="col-4">{{i + 1}}</p>
+          <p class="col-8 complete">{{item.name}}</p>
+        </div>
+        <div class="col-md-5 col-12">
+          <div class="row">
+            <div class="col-6">
+              <button [routerLink]="['/edit',item.id]" class="btn btn-secondary ">edit</button>
+            </div>
+            <div class="col-6">
+              <button (click)="openModal(template, item.id)" class="btn btn-danger">Delete</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="form-group form-check col-12 col-md-2 m-2">
-        <input type="checkbox"
-               class="form-check-input"
-               [id]="item.id" [(ngModel)]="item.completed"
-               (change)="editCheck(item.id, item.name, item.completed)">
-        <label class="form-check-label" [for]="item.id"> {{item.completed ? ('Completed') : ('Uncompleted')}} </label>
+        <div class="form-group form-check col-12 col-md-2 m-2">
+          <input (change)="editCheck(item.id, item.name, item.completed)"
+                 [(ngModel)]="item.completed"
+                 [id]="item.id" class="form-check-input"
+                 type="checkbox">
+          <label [for]="item.id" class="form-check-label"> {{item.completed ? ('Completed') : ('Uncompleted')}} </label>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-<h2 class="mt-5">ToDo Items</h2>
-<section class="col-sm-12  bg-light border-dark mt-3 p-4" style="border: solid">
-  <div *ngFor="let item of taskItem; index as i">
-    <div class="row p-2  mt-2 border" *ngIf="!item.completed">
-      <div class="col-md-5 col-12 row">
-        <p class="col-4">{{i + 1}}</p>
-        <p class="col-8">{{item.name}}</p>
-      </div>
-      <div class="col-md-5 col-12">
+  </section>
+  <h2 class="mt-5">ToDo Items</h2>
+  <section class="col-sm-12  bg-light border-dark mt-3 p-4" style="border: solid">
+    <div *ngFor="let item of taskItem; index as i">
+      <div class="row p-2  mt-2 border" *ngIf="!item.completed">
+        <div class="col-md-5 col-12 row">
+          <p class="col-4">{{i + 1}}</p>
+          <p class="col-8">{{item.name}}</p>
+        </div>
+        <div class="col-md-5 col-12">
         <div class="row">
           <div class="col-6">
             <button class="btn btn-secondary " [routerLink]="['/edit',item.id]">edit</button>
@@ -52,22 +53,23 @@
                (change)="editCheck(item.id, item.name, item.completed)">
         <label class="form-check-label" [for]="item.id"> {{item.completed ? ('Completed') : ('Uncompleted')}} </label>
       </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<br><br>
-<ng-template #template>
-  <div class="modal-body text-center">
-    <p>are you sure you want to delete this todo item? this action can not be undone</p>
-    <button type="button" class="btn btn-danger m-1" (click)="confirm()">Yes</button>
-    <button type="button" class="btn btn-secondary m-1" (click)="decline()">No</button>
-  </div>
-</ng-template>
+  <br><br>
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>are you sure you want to delete this todo item? this action can not be undone</p>
+      <button type="button" class="btn btn-danger m-1" (click)="confirm()">Yes</button>
+      <button type="button" class="btn btn-secondary m-1" (click)="decline()">No</button>
+    </div>
+  </ng-template>
 
-<ng-template #template2>
-  <div class="modal-body text-center">
-    <p style="text-align: justify">Deleted successfully :)</p>
-    <button type="button" class="btn btn-danger m-1" (click)="confirm2()">Ok</button>
-  </div>
-</ng-template>
+  <ng-template #template2>
+    <div class="modal-body text-center">
+      <p style="text-align: justify">Deleted successfully :)</p>
+      <button (click)="confirm2()" class="btn btn-danger m-1" type="button">Ok</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,20 +1,23 @@
-<h2>Create New ToDo Item</h2>
-<form [formGroup]="addForm" (ngSubmit)="addNew(successTemplate, nameNotValid)">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Name: </label>
-    <input formControlName="newTodoName" type="text" class="form-control" id="exampleInputEmail1"
-           placeholder="Enter Item Name Here">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck3" formControlName="element" (change)="chaneItem()">
-    <label class="form-check-label" for="exampleCheck3">{{checkVal}}</label>
-  </div>
+<div class="container pt-5">
+  <h2>Create New ToDo Item</h2>
+  <form (ngSubmit)="addNew(successTemplate, nameNotValid)" [formGroup]="addForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name: </label>
+      <input class="form-control" formControlName="newTodoName" id="exampleInputEmail1"
+             placeholder="Enter Item Name Here"
+             type="text">
+    </div>
+    <div class="form-group form-check">
+      <input (change)="chaneItem()" class="form-check-input" formControlName="element" id="exampleCheck3"
+             type="checkbox">
+      <label class="form-check-label" for="exampleCheck3">{{checkVal}}</label>
+    </div>
 
-  <button type="reset" class="btn btn-secondary">Reset</button>
-  <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
-  <button type="submit" class="btn btn-primary" [disabled]="!addForm.valid">Submit</button>
-</form>
-
+    <button class="btn btn-secondary" type="reset">Reset</button>
+    <button [routerLink]="['/home']" class="btn btn-danger" type="button">Cancel</button>
+    <button [disabled]="!addForm.valid" class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
 
 <!--module-->
 <ng-template #successTemplate>

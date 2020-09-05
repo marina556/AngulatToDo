@@ -1,30 +1,32 @@
-<h2>Edit ToDo Item</h2>
-<!--Start Form-->
-<form [formGroup]="editForm" (ngSubmit)="editItem(template)">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Name: </label>
-    <input
-      formControlName="editTodoName"
-      type="text" class="form-control"
-      id="exampleInputEmail1"
-      placeholder="Enter Item Name Here"
-    >
-  </div>
-  <div class="form-group form-check">
-    <input
-      type="checkbox"
-      class="form-check-input"
-      id="exampleCheck1"
-      formControlName="editTodoCheck"
-      name="first"
-    >
-    <label class="form-check-label" for="exampleCheck1"> {{editForm.value ? ('Completed') : ('Uncompleted')}} </label>
-    <!--    arguments.controls.value.editTodoCheck-->
-  </div>
-  <button type="reset" class="btn btn-secondary">Reset</button>
-  <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancel</button>
-  <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Submit</button>
-</form>
+<div class="container pt-5">
+  <h2>Edit ToDo Item</h2>
+  <!--Start Form-->
+  <form (ngSubmit)="editItem(template)" [formGroup]="editForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name: </label>
+      <input
+        class="form-control"
+        formControlName="editTodoName" id="exampleInputEmail1"
+        placeholder="Enter Item Name Here"
+        type="text"
+      >
+    </div>
+    <div class="form-group form-check">
+      <input
+        class="form-check-input"
+        formControlName="editTodoCheck"
+        id="exampleCheck1"
+        name="first"
+        type="checkbox"
+      >
+      <label class="form-check-label" for="exampleCheck1"> {{editForm.value ? ('Completed') : ('Uncompleted')}} </label>
+      <!--    arguments.controls.value.editTodoCheck-->
+    </div>
+    <button class="btn btn-secondary" type="reset">Reset</button>
+    <button [routerLink]="['/home']" class="btn btn-danger" type="button">Cancel</button>
+    <button [disabled]="editForm.invalid" class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
 <!--end of form-->
 <!--models-->
 <ng-template #template>

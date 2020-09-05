@@ -1,4 +1,17 @@
-<h1 class="text-center">ToDo List</h1>
-<button (click)="logOut()" type="button" >LogOut</button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <div class="container">
+    <a class="navbar-brand">ToDo List</a>
+    <div id="navbarNav" style="justify-content: flex-end">
+      <ul class="navbar-nav ">
+        <li class="nav-item mr-3">
+          <button [routerLink]="['/new']" class="btn btn-info">Create ToDo Item</button>
+        </li>
+        <li class="nav-item">
+          <button (click)="logOut()" class="btn btn-info" type="button">LogOut</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h1 class="text-center pt-5">ToDo List</h1>
 <app-items></app-items>
-<button class="btn btn-primary mb-5" [routerLink]="['/new']">Create ToDo Item</button>
