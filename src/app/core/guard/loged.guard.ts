@@ -7,16 +7,18 @@ import {AuthService} from '../services/auth.service';
   providedIn: 'root'
 })
 export class LogedGuard implements CanActivate {
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private route: Router) {
   }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.isLogin){
+    if (this.authService.isLogin) {
       return true;
+    } else {
+      this.route.navigate([`/login`]);
+      return false;
     }
-    else { return false; }
-      }
+  }
 
 }
