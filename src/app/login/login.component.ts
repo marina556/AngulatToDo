@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../core/services/auth.service';
 import {Auth} from '../core/interfaces/auth';
 import {Router} from '@angular/router';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  modalRef: BsModalRef;
+
   login = this.fb.group({
     newTodoName: ['', Validators.required],
     newTodoPass: ['', Validators.required]
@@ -17,13 +20,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private auth: AuthService,
-              private route: Router) {
+              private route: Router,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
   }
 
-  handelsunmit(): void {
+  confirm(): void {
+    this.login.reset();
+    this.modalRef.hide();
+  }
+
+  handleSubmit(temp: TemplateRef<object>): void {
     const user: Auth = {
       username: this.login.value.newTodoName,
       password: this.login.value.newTodoPass
@@ -31,7 +40,10 @@ export class LoginComponent implements OnInit {
     this.auth.login(user).subscribe(data => {
       this.auth.isLogin = true;
       this.route.navigate(['/home']);
-      console.log(data.access_token);
-    }, error => console.log(error));
+    }, error => {
+      if (error.error.message === 'Unauthorized') {
+        this.modalRef = this.modalService.show(temp, {class: 'modal-sm'});
+      }
+    });
   }
 }

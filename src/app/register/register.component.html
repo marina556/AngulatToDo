@@ -1,5 +1,5 @@
 <h2>Register</h2>
-<form [formGroup]="register" (ngSubmit)="handleSubmit()">
+<form (ngSubmit)="handleSubmit(template)" [formGroup]="register">
   <div class="form-group">
     <label for="name">Name: </label>
     <input formControlName="newTodoName" type="text" class="form-control" id="name" placeholder="Enter Item Name Here">
@@ -15,3 +15,10 @@
   <button [routerLink]="['/login']" class="btn btn-danger" type="button">login</button>
   <button type="submit" class="btn btn-primary" [disabled]="!register.valid">Submit</button>
 </form>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>UserName is already exists !! please enter another one :)</p>
+    <button (click)="confirm()" class="btn btn-secondary" type="button">ok</button>
+  </div>
+</ng-template>
