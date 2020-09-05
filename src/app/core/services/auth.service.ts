@@ -5,13 +5,16 @@ import {Auth} from '../interfaces/auth';
 import {UserToken} from '../interfaces/user-token';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isLogin: boolean;
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient, private route: Router) {
+    this.isLogin = !!localStorage.getItem('token');
   }
 
   login(user: Auth): Observable<UserToken> {
@@ -25,7 +28,12 @@ export class AuthService {
   register(user: Auth): Observable<UserToken> {
     return this.http.post<UserToken>(`${environment.apiUrl}/auth/register`, user).pipe(
       tap(data => {
-      localStorage.setItem('token', data.access_token);
-    }));
+        localStorage.setItem('token', data.access_token);
+      }));
+  }
+
+  logOutUser(): void{
+    localStorage.removeItem('token');
+    this.route.navigate([`/login`]);
   }
 }

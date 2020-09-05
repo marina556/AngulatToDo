@@ -7,14 +7,15 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {LogedGuard} from './core/guard/loged.guard';
+import {NotLogedGuard} from './core/guard/not-loged.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', canActivate: [LogedGuard], component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'new', component: AddComponent},
-  {path: 'edit/:id', component: EditComponent},
+  {path: 'new', canActivate: [LogedGuard], component: AddComponent},
+  {path: 'edit/:id', canActivate: [LogedGuard], component: EditComponent},
   {path: '**', component: NotFoundComponent},
 ];
 
