@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
     };
 
     this.auth.register(user).subscribe(data => {
+      // this.auth.isLogin = true;
       console.log('reg :', data.access_token);
     }, error => console.log(error));
   }

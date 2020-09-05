@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-
+  isLogin: boolean;
   constructor(private http: HttpClient) {
   }
 

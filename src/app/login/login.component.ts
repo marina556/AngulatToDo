@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
       password: this.login.value.newTodoPass
     };
     this.auth.login(user).subscribe(data => {
+      this.auth.isLogin = true;
+      this.route.navigate(['/home']);
       console.log(data.access_token);
     }, error => console.log(error));
   }
